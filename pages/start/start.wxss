@@ -1,0 +1,67 @@
+/* pages/start/start.wxss */
+page {
+    height: 100%;
+}
+.container {
+    font-size: 0;
+    height: 100%;
+    background-color: rgba(240,240,240,.8);
+}
+.topBox {
+    background-color: lightblue;
+    height: 40%;
+    width: 100%;
+    position: relative;
+}
+.topBox .user {
+    position: absolute;
+    width: 150rpx;
+    bottom: 100rpx;
+    left: 50%;
+    margin-left: -75rpx;
+    z-index: 2;
+}
+.topBox .user image {
+    width: 100%;
+    height: 150rpx;
+    border-radius: 50%;
+    animation: avatar 7s ease infinite ;
+}
+.topBox .userName {
+    width: 750rpx;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    bottom: 10rpx;
+    font-size: 36rpx;
+    z-index: 4;
+    color: #666;
+    letter-spacing: 6rpx;
+}
+@keyframes avatar {
+    0% {transform: rotateZ(-20deg) translate3d(10rpx,10rpx,0)}
+    50% {transform: rotateZ(20deg) translate3d(-10rpx,0,0)}
+    100% {transform: rotateZ(-20deg) translate3d(10rpx,10rpx,0)}
+}
+.topBox  .wave {
+    position: absolute;
+    bottom: 0;
+    width: 2250rpx;
+    height: 150rpx;
+    opacity: 0.85;
+    z-index: 1;
+    animation: wave 7s linear infinite;
+}
+.topBox .wave.waveBehind {
+    opacity: 0.7;
+    z-index: 3;
+    animation: waveBehind 7s linear infinite;
+}
+@keyframes wave {
+    from {transform: translateX(-375rpx)}
+    to {transform: translateX(-1375rpx)}
+}
+@keyframes waveBehind {
+    from {transform: translateX(-125rpx)}
+    to {transform: translateX(-1125rpx)}
+}

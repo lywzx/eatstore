@@ -1,0 +1,13 @@
+<!--pages/start/start.wxml-->
+<view class="container">
+    <view class='topBox'>
+        <view class="user">
+            <image src="{{userInfo.avatarUrl}}"></image>
+        </view>
+        <text class="userName">{{userInfo.nickName}},欢迎您</text>
+        <image class="wave" src="/images/wave.png" />
+        <image class="wave waveBehind" src="/images/wave.png" />
+    </view>
+    <view class='bottomBox'></view>    
+</view>
+  
