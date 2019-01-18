@@ -1,13 +1,16 @@
 <!--pages/start/start.wxml-->
 <view class="container">
     <view class='topBox'>
+        <image src="/images/title8.png" class='titleTxt'></image>
         <view class="user">
             <image src="{{userInfo.avatarUrl}}"></image>
         </view>
-        <text class="userName">{{userInfo.nickName}},欢迎您</text>
+        <text class="userName" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}},欢迎您</text>
         <image class="wave" src="/images/wave.png" />
         <image class="wave waveBehind" src="/images/wave.png" />
     </view>
-    <view class='bottomBox'></view>    
+    <view class='bottomBox'>
+        <i-button bind:click="goStore" type='primary' shape="circle" size="small">进入店铺</i-button>
+    </view>    
 </view>
   

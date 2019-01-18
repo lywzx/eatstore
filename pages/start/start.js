@@ -94,5 +94,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  goStore() {
+    wx.redirectTo({
+      url: '/pages/store/store'
+    })
   }
 })

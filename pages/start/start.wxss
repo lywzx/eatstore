@@ -6,12 +6,31 @@ page {
     font-size: 0;
     height: 100%;
     background-color: rgba(240,240,240,.8);
+    overflow: hidden;
 }
 .topBox {
     background-color: lightblue;
-    height: 40%;
+    height: 45%;
     width: 100%;
     position: relative;
+    animation: load 2s ease;
+}
+@keyframes load {
+    from {height: 100%}
+    to {height: 45%}
+}
+.titleTxt {
+    position: absolute;
+    top: 50rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 150rpx;
+    width: 450rpx;
+    animation: show 2s ease;
+}
+@keyframes show {
+    from {opacity: 0}
+    to {opacity: 1}
 }
 .topBox .user {
     position: absolute;
@@ -20,6 +39,7 @@ page {
     left: 50%;
     margin-left: -75rpx;
     z-index: 2;
+    animation: show 2s ease;
 }
 .topBox .user image {
     width: 100%;
@@ -64,4 +84,9 @@ page {
 @keyframes waveBehind {
     from {transform: translateX(-125rpx)}
     to {transform: translateX(-1125rpx)}
+}
+.bottomBox {
+    padding: 0 80rpx;
+    padding-top: 100rpx;
+    animation: show 2s ease;
 }
