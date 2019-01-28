@@ -1,0 +1,16 @@
+<!--components/storeHeader/storeHeader.wxml-->
+<view class="storeHeader">
+    <view class="topBg">
+        <image class="topBgImg" src=""/>
+    </view>
+    <view class='textBox'>
+        <text class="storeTitile">大台北珍珠奶茶</text>
+        <view class="infoBox">
+            <text class="txt">评价4.3</text>
+            <text class="txt">月售75</text>
+            <text class="txt">蜂鸟专送约27分钟</text>
+        </view>
+    </view>
+    <image class="storeImg" src=""/>
+    <view class="favBox"></view>
+</view>

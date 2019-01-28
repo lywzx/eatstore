@@ -3,9 +3,12 @@
     <view class='topBox'>
         <image src="/images/title8.png" class='titleTxt'></image>
         <view class="user">
-            <image src="{{userInfo.avatarUrl}}"></image>
+            <open-data class="avatar" type="userAvatarUrl"></open-data>
         </view>
-        <text class="userName" wx:if="{{userInfo.nickName}}">{{userInfo.nickName}},欢迎您</text>
+        <view class="userName">
+            <open-data class="name" type="userNickName">ddd</open-data>
+            <text class="txt">,欢迎您</text>
+        </view>
         <image class="wave" src="/images/wave.png" />
         <image class="wave waveBehind" src="/images/wave.png" />
     </view>

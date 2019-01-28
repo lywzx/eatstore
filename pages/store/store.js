@@ -12,7 +12,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: 'http://ustbhuangyi.com/sell/api/goods',
+      success(res) {
+        console.log(res)
+      },
+      fail() {
+        // 由于网上找的api为http协议  小程序只支持https  所以使用本地文件数据
+        var data = require('../../data.js')
+        console.log(data.default.data)
+      }
+    })
   },
 
   /**

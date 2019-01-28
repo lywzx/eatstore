@@ -1,2 +1,2 @@
 <!--pages/store/store.wxml-->
-<text>我是store</text>
+<store-header></store-header>
