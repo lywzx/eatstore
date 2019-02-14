@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/start/start",
-    "pages/store/store"
+    "pages/store/store",
+    "pages/start/start"
   ],
   "window": {
     "backgroundTextStyle": "light",

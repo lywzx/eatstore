@@ -1,2 +1,72 @@
 <!--pages/store/store.wxml-->
-<store-header></store-header>
+<view class="store {{bigDisShow?'hidden':''}}">
+    <!-- 头部 -->
+    <view class="storeHeader">
+        <view class="topBg">
+            <image class="topBgImg" src="{{seller.avatar}}"/>
+        </view>
+        <view class='textBox'>
+            <text class="storeTitile">{{seller.name}}</text>
+            <view class="infoBox">
+                <text class="txt">评价{{seller.score}}</text>
+                <text class="txt">月售{{seller.sellCount}}</text>
+                <text class="txt">{{seller.description}}约{{seller.deliveryTime}}分钟</text>
+            </view>
+        </view>
+        <image class="storeImg" src="{{seller.avatar}}"/>
+        <view class="favBox"></view>
+    </view>
+    <!-- 优惠 小 -->
+    <view class="smallDisCount" wx:if="{{!bigDisShow}}" bindtap="changeBigDisShow">
+        <view class="left">
+            <text class="type {{typeMap[seller.supports[0].type].class}}">{{typeMap[seller.supports[0].type].txt}}</text>
+            <text class="desTxt">{{seller.supports[0].description}}</text>
+        </view>
+        <view class="right">
+            <text class="iconTxt">{{seller.supports.length}}个优惠</text>
+            <text class="iconfont icon-jt-bottom"></text>
+        </view>
+    </view>
+    <!-- 优惠 大 -->
+    <view class="bigDisCount" wx:if="{{bigDisShow}}">
+        <view class="disTitle" bindtap="changeBigDisShow">
+            <text>优惠</text>
+            <text class="iconfont icon-jt-top"></text>
+        </view>
+        <view class="disBox" wx:for="{{seller.supports}}" wx:for-item="item" wx:for-index="index" wx:key="index">
+            <text class="type {{typeMap[item.type].class}}">{{typeMap[item.type].txt}}</text>
+            <text class="desTxt">{{item.description}}</text>
+        </view>
+        <view class="noticeTitle">公告</view>
+        <text class="noticeContent">{{seller.bulletin}}</text>
+        <view class="btnClose">
+            <text class="iconfont icon-jt-top" bindtap="changeBigDisShow"></text>
+        </view>
+    </view>
+    <!-- tab -->
+    <view class="tab">
+        <view class="tabBar">
+            <view class="tabBarItem" bindtap="changeShowTab" data-i="0">点餐</view>
+            <view class="tabBarItem" bindtap="changeShowTab" data-i="1">评价</view>
+            <view class="tabBarItem" bindtap="changeShowTab" data-i="2">商家</view>
+            <view class="borderBottom" style="transform:translate({{showTab * 250}}rpx)"></view>
+        </view>
+        <view class="tabContent" 
+            bindtouchstart="tabTouchStart"
+            bindtouchmove="tabTouchMove"
+            bindtouchend="tabTouchEnd"
+            bindtouchcancel="tabTouchEnd">
+            <view class="tabWidthBox" style="transform:translate({{offsetX}}px); transition:{{isTouching?'none':'all 0.2s linear'}}">
+                <!-- tab  食物分页 -->
+                <scorll-view class="foods tabConItem">foods</scorll-view>
+                <!-- tab 评价分页 -->
+                <scorll-view class="ratings tabConItem">ratings</scorll-view>
+                <!-- tab 商家分页 -->
+                <scorll-view class="seller tabConItem">
+                    <view class="info">
+                    </view>
+                </scorll-view>
+            </view>
+        </view>
+    </view>
+</view>

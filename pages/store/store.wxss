@@ -1,1 +1,208 @@
 /* pages/store/store.wxss */
+page {
+    height: 100%;
+}
+.store {
+    height: 100%;
+}
+.store.hidden {
+    overflow: hidden;
+}
+.storeHeader {
+    font-size: 0;
+    position: relative;
+}
+.storeHeader .topBg {
+    height: 175rpx;
+    overflow: hidden;
+    filter: blur(2px);
+    background-color: #CCC;
+}
+.storeHeader .topBg image {
+    width: 750rpx;
+    opacity: .9;
+}
+.storeHeader .textBox {
+    margin-top: 50rpx
+}
+.storeHeader .textBox .storeTitile {
+    font-size: 44rpx;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+}
+.storeHeader .textBox .infoBox {
+    margin-top: 10rpx;
+    font-size: 24rpx;
+    text-align: center;
+}
+.storeHeader .textBox .infoBox .txt {
+    display: inline-block;
+    padding-left: 15rpx;
+    padding-right: 15rpx;
+    border-right: 1px solid rgba(200,200,200,.5);
+    color: #666;
+}
+.storeHeader .textBox .infoBox .txt:nth-child(1) {
+    padding-left: 0;
+}
+.storeHeader .textBox .infoBox .txt:nth-child(3) {
+    padding-right: 0;
+    border-right: 0;
+}
+.storeHeader .storeImg {
+    position: absolute;
+    top: 50rpx;
+    left: 50%;
+    margin-left: -75rpx;
+    width: 150rpx;
+    height: 150rpx;
+    box-shadow: 1rpx 1rpx 5px #888888;
+}
+.smallDisCount {
+    margin-top: 20rpx;
+    font-size: 0;
+    height: 30rpx;
+    padding: 0 100rpx;
+}
+.smallDisCount>view {
+    display: inline-block;
+}
+.smallDisCount .left {
+    float: left;
+}
+.smallDisCount .right {
+    float: right;
+}
+.smallDisCount text {
+    font-size: 22rpx;
+    line-height: 30rpx;
+}
+.smallDisCount .type, .bigDisCount .disBox .type{
+    font-size: 22rpx;
+    margin-right: 20rpx;
+    display: inline-block;
+    padding: 2rpx 6rpx;
+    border-radius: 5rpx;
+}
+.smallDisCount .type.mj , .bigDisCount .disBox .type.mj{
+    border: 1rpx solid rgba(220,20,60,.2);
+    background-color: rgba(255,192,203,.2);
+    color: rgba(220,20,60,.8);
+}
+.smallDisCount .type.dj , .bigDisCount .disBox .type.dj{
+    border: 1rpx solid rgba(30,144,255,.2);
+    background-color: rgba(135,206,235,.2);
+    color: rgb(30,144,255);
+}
+.smallDisCount .type.tj , .bigDisCount .disBox .type.tj{
+    border: 1rpx solid rgba(50,205,50,.2);
+    background-color: rgba(0,255,0,.2);
+    color: rgb(50,205,50);
+}
+.smallDisCount .type.fp , .bigDisCount .disBox .type.fp{
+    border: 1rpx solid rgba(139,0,139,.2);
+    background-color: rgba(216,191,216,.6);
+    color: rgb(139,0,139);
+}
+.smallDisCount .type.bz , .bigDisCount .disBox .type.bz{
+    border: 1rpx solid rgba(0,128,128,.2);
+    background-color: rgba(64,224,208,.2);
+    color: rgb(0,128,128);
+}
+.smallDisCount .desTxt{
+    color: #555;
+}
+.smallDisCount .iconTxt, .smallDisCount .iconfont{
+    color: #999;
+    font-size: 22rpx;
+    vertical-align: bottom;
+}
+.smallDisCount .iconTxt {
+    margin-right: 10rpx;
+}
+.bigDisCount {
+    padding:20rpx 50rpx;
+    font-size: 0;
+    height: 80%;
+}
+.bigDisCount .disTitle, .bigDisCount .noticeTitle{
+    margin-top: 50rpx;
+    margin-bottom: 30rpx;
+    font-size: 32rpx;
+    font-weight: 600;
+}
+.bigDisCount .disTitle .txt {
+    float: left;
+}
+.bigDisCount .disTitle .iconfont {
+    font-weight: 300;
+    color: #AAA;
+    float: right;
+}
+.bigDisCount .disBox {
+    margin-top: 20rpx;
+    font-size: 20rpx;
+    color: #555;
+}
+.bigDisCount .noticeContent {
+    color: #555;
+    font-size: 22rpx;
+    line-height: 40rpx;
+}
+.bigDisCount .btnClose {
+    color: #AAA
+}
+.bigDisCount .btnClose text {
+    font-size: 70rpx;
+    position: fixed;
+    bottom: 75rpx;
+    left: 50%;
+    transform: translate(-50%);
+}
+.tab {
+    height: 100vh;
+    margin-top: 30rpx;
+    position: relative;
+}
+.tab .tabBar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    font-size: 32rpx;
+    border-bottom: 1rpx solid #EEE;
+    z-index: 1;
+}
+.tab .tabBar .tabBarItem {
+    height: 80rpx;
+    line-height: 80rpx;
+    display: inline-block;
+    flex: 1;
+    text-align: center;
+}
+.tab .tabBar .borderBottom {
+    position: absolute;
+    left: 75rpx;
+    bottom: 0;
+    width: 100rpx;
+    height: 6rpx;
+    background-color: rgb(30,144,255);
+    transition: all 0.2s linear; 
+}
+.tab .tabContent {
+    height: 100%;
+    width: 750rpx;
+}
+.tab .tabContent .tabWidthBox {
+    height: 100%;
+    width: 2250rpx;
+    display: flex;
+    overflow: hidden;
+}
+.tab .tabContent .tabWidthBox .tabConItem {
+    flex: 1;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 80rpx;
+}

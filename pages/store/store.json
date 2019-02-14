@@ -1,5 +1,4 @@
 {
     "usingComponents": {
-        "store-header": "/components/storeHeader/storeHeader"
     }
 }
