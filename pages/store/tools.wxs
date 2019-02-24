@@ -1,0 +1,45 @@
+function getRatings(type, ratings) {
+  if (type == 2) {
+    return ratings
+  }
+  return ratings.filter(function(item) {return item.rateType == type})
+}
+function getAllcount(goods) {
+  var res = 0
+  goods.forEach(function(items) {
+    items.foods.forEach(function(item){
+      if(item.count) { res += item.count }
+    })
+  })
+  return res
+}
+function getPrice (goods) {
+  var res = 0
+  goods.forEach(function(items){
+    items.foods.forEach(function(item){
+      if(item.count) { res += item.count * item.price }
+    })
+  })
+  return res
+}
+function getCartTxt (goods, minPrice) {
+  var price = getPrice(goods)
+  var res = ''
+  var isActive = false
+  if(!price) {
+    res = '￥' + minPrice + '起送'
+  } else if (price < minPrice) {
+    var num = parseInt(minPrice - price)
+    res = '还差￥' + num + '起送'
+  } else {
+    isActive = true
+    res = '去结算'
+  }
+  return {txt: res, isActive: isActive}
+}
+module.exports = {
+  getRatings: getRatings,
+  getAllcount: getAllcount,
+  getPrice: getPrice,
+  getCartTxt: getCartTxt
+}

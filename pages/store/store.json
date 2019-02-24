@@ -1,4 +1,7 @@
 {
     "usingComponents": {
+        "i-button": "/iview/button/index",
+        "star": "/components/star/star",
+        "control": "/components/control/control"
     }
 }

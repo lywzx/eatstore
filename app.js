@@ -14,5 +14,9 @@ App({
     })
   },
   globalData: {
+    seller: {},
+    ratings: [],
+    goods: [],
+    pixelRatio: 0
   }
 })

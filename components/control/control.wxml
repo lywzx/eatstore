@@ -1,0 +1,6 @@
+<!--components/control/control.wxml-->
+<view class="comControl">
+    <text class="controlBtn {{food.count?'show':'hidden'}}"  bindtap="reduce">－</text>
+    <text class="count {{food.count?'show':'hidden'}}" >{{food.count?food.count:0}}</text>
+    <text class="controlBtn" bindtap="add">＋</text>
+</view>

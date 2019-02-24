@@ -1,0 +1,39 @@
+/* components/control/control.wxss */
+.comControl {
+}
+.comControl .controlBtn {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 30rpx;
+    font-weight: 700;
+    width: 40rpx;
+    height: 40rpx;
+    text-align: center;
+    line-height: 40rpx;
+    color: white;
+    background-color: #00a0dc;
+    border-radius: 50%;
+    margin-left: 15rpx;
+}
+.comControl .count {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 30rpx;
+    margin-left: 15rpx;
+}
+.show {
+    opacity: 1;
+    animation: show .3s linear;
+}
+.hidden {
+    opacity: 0;
+    animation: hidden .3s linear;
+}
+@keyframes show {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes hidden {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

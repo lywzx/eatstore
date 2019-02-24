@@ -2,8 +2,14 @@
 page {
     height: 100%;
 }
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
 .store {
     height: 100%;
+    overflow: hidden;
 }
 .store.hidden {
     overflow: hidden;
@@ -13,7 +19,7 @@ page {
     position: relative;
 }
 .storeHeader .topBg {
-    height: 175rpx;
+    height: 10vh;
     overflow: hidden;
     filter: blur(2px);
     background-color: #CCC;
@@ -23,17 +29,18 @@ page {
     opacity: .9;
 }
 .storeHeader .textBox {
-    margin-top: 50rpx
+    margin-top: 4vh;
+    height: 8vh;
 }
 .storeHeader .textBox .storeTitile {
-    font-size: 44rpx;
+    font-size: 42rpx;
     display: block;
     text-align: center;
     font-weight: 600;
 }
 .storeHeader .textBox .infoBox {
-    margin-top: 10rpx;
-    font-size: 24rpx;
+    margin-top: 9rpx;
+    font-size: 22rpx;
     text-align: center;
 }
 .storeHeader .textBox .infoBox .txt {
@@ -52,17 +59,16 @@ page {
 }
 .storeHeader .storeImg {
     position: absolute;
-    top: 50rpx;
+    top: 3vh;
     left: 50%;
-    margin-left: -75rpx;
-    width: 150rpx;
-    height: 150rpx;
+    margin-left: -5vh;
+    width: 10vh;
+    height: 10vh;
     box-shadow: 1rpx 1rpx 5px #888888;
 }
 .smallDisCount {
-    margin-top: 20rpx;
     font-size: 0;
-    height: 30rpx;
+    height: 3vh;
     padding: 0 100rpx;
 }
 .smallDisCount>view {
@@ -76,7 +82,7 @@ page {
 }
 .smallDisCount text {
     font-size: 22rpx;
-    line-height: 30rpx;
+    line-height: 3vh;
 }
 .smallDisCount .type, .bigDisCount .disBox .type{
     font-size: 22rpx;
@@ -122,15 +128,17 @@ page {
     margin-right: 10rpx;
 }
 .bigDisCount {
-    padding:20rpx 50rpx;
+    padding:2vh 50rpx 0 50rpx;
     font-size: 0;
-    height: 80%;
+    height: 78vh;
 }
 .bigDisCount .disTitle, .bigDisCount .noticeTitle{
-    margin-top: 50rpx;
     margin-bottom: 30rpx;
     font-size: 32rpx;
-    font-weight: 600;
+    font-weight: 700;
+}
+.bigDisCount .noticeTitle {
+    margin-top: 50rpx;
 }
 .bigDisCount .disTitle .txt {
     float: left;
@@ -160,9 +168,40 @@ page {
     left: 50%;
     transform: translate(-50%);
 }
+.smallDisCount.show {
+    animation: smallShow .2s linear;
+}
+.smallDisCount.hidden {
+    animation: smallHidden .2s linear;
+    display: none;
+}
+@keyframes smallShow {
+    from { opacity: 0}
+    to {opacity: 1;}
+}
+@keyframes smallHidden {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+.bigDisCount.show {
+    animation: bigShow .1s linear;
+}
+.bigDisCount.hidden {
+    animation: bigHidden .1s linear;
+    height: 0;
+    display: none;
+}
+@keyframes bigShow {
+    from { height: 0 ; opacity: 0;}
+    to {height: 72vh; opacity: 1;}
+}
+@keyframes bigHidden {
+    from {height: 72vh; opacity: 1;}
+    to {height: 0; opacity: 0;}
+}
 .tab {
-    height: 100vh;
-    margin-top: 30rpx;
+    height: 74vh;
+    margin-top: 1vh;
     position: relative;
 }
 .tab .tabBar {
@@ -173,10 +212,11 @@ page {
     font-size: 32rpx;
     border-bottom: 1rpx solid #EEE;
     z-index: 1;
+    background-color: #fff;
 }
 .tab .tabBar .tabBarItem {
-    height: 80rpx;
-    line-height: 80rpx;
+    height: 70rpx;
+    line-height: 70rpx;
     display: inline-block;
     flex: 1;
     text-align: center;
@@ -197,12 +237,358 @@ page {
 .tab .tabContent .tabWidthBox {
     height: 100%;
     width: 2250rpx;
-    display: flex;
-    overflow: hidden;
 }
 .tab .tabContent .tabWidthBox .tabConItem {
-    flex: 1;
+    float: left;
+    width: 750rpx;
     height: 100%;
     box-sizing: border-box;
-    padding-top: 80rpx;
+    padding-top: 70rpx;
+}
+.tab .tabContent .tabWidthBox .foodsType {
+    float: left;
+    left: 0;
+    width: 160rpx;
+    background-color: rgba(123,123,123,.1);
+    color: #666;
+    height: 100%;
+}
+.tab .tabContent .tabWidthBox .foodsType .foodsTypeItem {
+    padding: 30rpx 20rpx;
+    font-size: 28rpx;
+}
+.tab .tabContent .tabWidthBox .foodsType .foodsTypeItem.active {
+    background: #fff;
+    color: #000;
+    font-weight: 700;
+}
+.tab .tabContent .tabWidthBox .foodsType .foodsTypeBottom {
+    width: 160rpx;
+    height: 300rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList {
+    float: right;
+    width: 590rpx;
+    height: 100%;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods {
+
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsTypeBox {
+    height: 60rpx;
+    font-size: 26rpx;
+    font-weight: 700;
+    padding-left: 20rpx;
+    color: #666;
+    line-height: 60rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem {
+    padding: 20rpx;
+    padding-top: 0;
+    padding-bottom: 30rpx;
+    box-sizing: border-box;
+    display: flex;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .left {
+    height: 150rpx;
+    flex: 0 0 150rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .left image {
+    width: 150rpx;
+    height: 150rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right {
+    flex: 1;
+    position: relative;
+    padding: 0 20rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodName {
+    vertical-align: top;
+    line-height: 33rpx;
+    font-size: 32rpx;
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+    width: 350rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodDes {
+    padding-top: 10rpx;
+    font-size: 20rpx;
+    color: #CCC;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 350rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodCount {
+    padding-top: 8rpx;
+    font-size: 20rpx;
+    color: #CCC;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodPrice {
+    position: absolute;
+    bottom: 0rpx;
+    left: 20rpx;
+    font-size: 36rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodPrice .yuan {
+    font-size: 30rpx;
+    color: red;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodPrice .num {
+    color: red;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodPrice .oldPrice {
+    font-size: 30rpx;
+    color: #BBB;
+    text-decoration: line-through;
+    padding-left: 10rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .foods .foodsItem .right .foodControl {
+    position: absolute;
+    right: 10rpx;
+    bottom: 10rpx;
+}
+.tab .tabContent .tabWidthBox .foodsList .shopCartBlank {
+    height: 100rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom {
+    height: 100rpx;
+    position: absolute;
+    bottom: 0;
+    width: 750rpx;
+    background-color: #666;
+    display: flex;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .leftBox {
+    flex: 0 0 160rpx;
+    position: relative;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .leftBox .circle {
+    position: absolute;
+    right: 0;
+    top: -25rpx;
+    width: 100rpx;
+    height: 100rpx;
+    background-color: #999;
+    border: 15rpx solid #666; 
+    border-radius: 50%;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .leftBox .circle.active {
+    background-color: #00a0dc;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .leftBox .circle .allCount {
+    position: absolute;
+    top: -15rpx;
+    right: -15rpx;
+    padding: 5rpx 10rpx;
+    line-height: 30rpx;
+    border-radius: 50%;
+    background-color: red;
+    color: #fff;
+    font-size: 30rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .midBox {
+    flex: 1;
+    padding-left: 10rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .midBox .price {
+    color: #fff;
+    font-size: 38rpx;
+    padding-top: 5rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .midBox .txt {
+    font-size: 30rpx;
+    color: #999;
+    padding-top: 10rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .midBox .deliveryPrice {
+    color: #999;
+    font-size: 28rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .rightBox {
+    flex: 0 0 240rpx;
+    background-color: #999;
+    color: #ccc;
+    font-size: 34rpx;
+    text-align: center;
+    line-height: 100rpx;
+}
+.tab .tabContent .tabWidthBox  .shopCartBottom .rightBox.active {
+    background-color: #00b43c;
+    color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings {
+    background: rgba(123,123,123,.1);
+}
+.tab .tabContent .tabWidthBox .ratings .score {
+    display: flex;
+    padding: 40rpx 0;
+    background-color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings .score .txt {
+    font-size: 32rpx;
+    line-height: 42rpx;
+    color: #666;
+}
+.tab .tabContent .tabWidthBox .ratings .score .scoreNum {
+    margin-top: 20rpx;
+    font-size: 40rpx;
+    line-height: 50rpx;
+    color: #666;
+}
+.tab .tabContent .tabWidthBox .ratings .score .storeScore {
+    flex: 2;
+    display: flex;
+}
+.tab .tabContent .tabWidthBox .ratings .score .storeScore .left {
+    float: left;
+    text-align: center;
+    flex: 1;
+    font-size: 60rpx;
+    height: 112rpx;
+    line-height: 112rpx;
+    color: #FF6100;
+}
+.tab .tabContent .tabWidthBox .ratings .score .storeScore .right {
+    float: right;
+    text-align: center;
+    flex: 1;
+}
+.tab .tabContent .tabWidthBox .ratings .score .foodScore{
+    flex: 1;
+    text-align: center;
+}
+.tab .tabContent .tabWidthBox .ratings .score .serverScore{
+    flex: 1;
+    text-align: center;
+    border-left: 1rpx solid rgba(123,123,123,.3)
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn {
+    margin-top: 20rpx;
+    padding: 0 30rpx;
+    background-color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .btn{
+    background-color: rgba(0,160,220,.2);
+    display: inline-block;
+    margin: 20rpx;
+    margin-left: 0;
+    padding: 20rpx 25rpx;
+    font-size: 30rpx;
+    color: #666;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .btn .num {
+    margin-left: 5rpx;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .btn.active{
+    background-color: #00a0dc;
+    color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .btn.badBtn {
+    background-color: #ccc;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .btn.badBtn.active {
+    background: #666;
+    color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .showHasContent {
+    padding: 10rpx 0 20rpx 0;
+    border-top: 1rpx dashed rgba(123,123,123,.3);
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .showHasContent text {
+    font-size: 30rpx;
+    display: inline-block;
+    vertical-align: middle;
+    color: #666;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .showHasContent text.circle{
+    background-color: #AAA;
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 20rpx;
+    border-radius: 50%;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingBtn .showHasContent text.circle.active{
+    background-color: #00b43c;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox {
+    background-color: #fff;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem{
+    position: relative;
+    padding: 30rpx;
+    border-bottom: 1rpx solid rgba(123,123,123,.2);
+    display: flex;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .left{
+    flex: 0 0 80rpx;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .left .avatar {
+    width: 60rpx;
+    height: 60rpx;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .right {
+    flex: 1;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .right .username {
+    font-size: 30rpx;
+    margin-bottom: 5rpx;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .right .text {
+    font-size: 30rpx;
+    margin: 10rpx 0;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .right .likeFoods {
+    padding-top: 10rpx;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .right .likeFoods  .likeFood{
+    display: inline-block;
+    color: #666;
+    font-size: 28rpx;
+    padding: 10rpx;
+    background-color: rgba(0,160,220,.2);
+    margin: 0 10rpx 10rpx 0;
+}
+.tab .tabContent .tabWidthBox .ratings .ratingsBox .ratingsItem .time {
+    position: absolute;
+    right: 30rpx;
+    top: 30rpx;
+    font-size: 28rpx;
+    color: #666;
+}
+.tab .tabContent .tabWidthBox .seller{
+  background-color: rgba(123,123,123,.1)
+}
+.tab .tabContent .tabWidthBox .seller .bulletin{
+  background-color: #fff;
+  padding: 40rpx;
+}
+.tab .tabContent .tabWidthBox .seller .bulletin .title{
+  font-size: 30rpx;
+  font-weight: 700;
+}
+.tab .tabContent .tabWidthBox .seller .bulletin .content{
+  font-size: 30rpx;
+  margin-top: 40rpx;
+  color: #666;
+}
+.tab .tabContent .tabWidthBox .seller .info {
+    background-color: #fff;
+    margin: 30rpx 0;
+}
+.tab .tabContent .tabWidthBox .seller .info .infoItem{
+    padding: 35rpx 40rpx;
+    overflow: hidden;
+    border-bottom: 1rpx solid rgba(123,123,123,.1)
+}
+.tab .tabContent .tabWidthBox .seller .info .infoItem .typeName{
+    font-size: 32rpx;
+    float: left;
+}
+.tab .tabContent .tabWidthBox .seller .info .infoItem .content{
+    font-size: 30rpx;
+    float: right;
+    color: #666;
 }

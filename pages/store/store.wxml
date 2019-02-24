@@ -1,4 +1,6 @@
 <!--pages/store/store.wxml-->
+<!-- 引入tools方法模块 -->
+<wxs src="./tools.wxs" module="tools"></wxs>
 <view class="store {{bigDisShow?'hidden':''}}">
     <!-- 头部 -->
     <view class="storeHeader">
@@ -17,7 +19,7 @@
         <view class="favBox"></view>
     </view>
     <!-- 优惠 小 -->
-    <view class="smallDisCount" wx:if="{{!bigDisShow}}" bindtap="changeBigDisShow">
+    <view class="smallDisCount {{!bigDisShow?'show':'hidden'}}" bindtap="changeBigDisShow">
         <view class="left">
             <text class="type {{typeMap[seller.supports[0].type].class}}">{{typeMap[seller.supports[0].type].txt}}</text>
             <text class="desTxt">{{seller.supports[0].description}}</text>
@@ -28,7 +30,7 @@
         </view>
     </view>
     <!-- 优惠 大 -->
-    <view class="bigDisCount" wx:if="{{bigDisShow}}">
+    <view class="bigDisCount {{bigDisShow?'show':'hidden'}}">
         <view class="disTitle" bindtap="changeBigDisShow">
             <text>优惠</text>
             <text class="iconfont icon-jt-top"></text>
@@ -58,14 +60,150 @@
             bindtouchcancel="tabTouchEnd">
             <view class="tabWidthBox" style="transform:translate({{offsetX}}px); transition:{{isTouching?'none':'all 0.2s linear'}}">
                 <!-- tab  食物分页 -->
-                <scorll-view class="foods tabConItem">foods</scorll-view>
-                <!-- tab 评价分页 -->
-                <scorll-view class="ratings tabConItem">ratings</scorll-view>
-                <!-- tab 商家分页 -->
-                <scorll-view class="seller tabConItem">
-                    <view class="info">
+                <view class="foods tabConItem">
+                    <scroll-view class="foodsType" scroll-y="true">
+                        <view class="foodsTypeItem {{typeActive == i?'active':''}}"
+                            wx:for="{{goods}}"
+                            wx:for-item="fItem"
+                            wx:for-index="i"
+                            wx:key="{{i}}"
+                            data-i="{{i}}"
+                            bindtap="changeFoodType"
+                        >{{fItem.name}}</view>
+                        <view class="foodsTypeBottom"></view>
+                    </scroll-view>
+                    <scroll-view class="foodsList"
+                        scroll-y="true"
+                        scroll-into-view="{{toView}}"
+                        scroll-with-animation="{{true}}"
+                        bindscroll="foodScroll">
+                        <view class="foods"
+                            wx:for="{{goods}}"
+                            wx:for-item="foods"
+                            wx:for-index="i"
+                            wx:key="{{i}}">
+                            <view class="foodsTypeBox" id="t{{i}}">{{foods.name}}</view>
+                            <view class="foodsItem"
+                                wx:for="{{foods.foods}}"
+                                wx:for-item="foodItem"
+                                wx:for-index="j"
+                                wx:key="{{j}}">
+                                <view class="left">
+                                    <image src="{{foodItem.image}}"></image>
+                                </view>
+                                <view class="right">
+                                    <view class="foodName">{{foodItem.name}}</view>
+                                    <view class="foodDes" wx:if="{{foodItem.description}}">{{foodItem.description}}</view>
+                                    <view class="foodCount">月售{{foodItem.sellCount}} 好评率{{foodItem.rating}}%</view>
+                                    <view class="foodPrice">
+                                        <text class="yuan">￥</text>
+                                        <text class="num">{{foodItem.price}}</text>
+                                        <text class="oldPrice" wx:if="{{foodItem.oldPrice}}">￥{{foodItem.oldPrice}}</text>
+                                    </view>
+                                    <view class="foodControl">
+                                        <control food="{{foodItem}}" i="{{i}}" j="{{j}}" bindaddEvent="add" bindreduceEvent="reduce"></control>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="shopCartBlank"></view>
+                    </scroll-view>
+                    <view class="shopCartBottom">
+                        <view class="leftBox">
+                            <view class="circle {{tools.getAllcount(goods)?'active':''}}">
+                                <view class="allCount" hidden="{{!tools.getAllcount(goods)}}">{{tools.getAllcount(goods)}}</view>
+                            </view>
+                        </view>
+                        <view class="midBox">
+                            <view class="price" wx:if="{{tools.getPrice(goods)}}">￥{{tools.getPrice(goods)}}</view>
+                            <view class="txt" wx:else>未选购商品</view>
+                            <view class="deliveryPrice">另需配送费{{seller.deliveryPrice}}元</view>
+                        </view>
+                        <view class="rightBox {{tools.getCartTxt(goods, seller.minPrice).isActive?'active':''}}">{{tools.getCartTxt(goods, seller.minPrice).txt}}</view>
                     </view>
-                </scorll-view>
+                    <view class="shopCart"></view>
+                    <view class="mask"></view>
+                </view>
+                <!-- tab 评价分页 -->
+                <scroll-view class="ratings tabConItem" scroll-y="true">
+                    <view class="score">
+                        <view class="storeScore">
+                            <view class="left">{{seller.score}}</view>
+                            <view class="right">
+                                <view class="txt">商家评分</view>
+                                <view class="scoreNum"><star score="{{seller.score}}"></star></view>
+                            </view>
+                        </view>
+                        <view class="foodScore">
+                            <view class="txt">味道</view>
+                            <view class="scoreNum">{{seller.foodScore}}</view>
+                        </view>
+                        <view class="serverScore">
+                            <view class="txt">服务</view>
+                            <view class="scoreNum">{{seller.foodScore}}</view>
+                        </view>
+                    </view>
+                    <view class="ratingBtn">
+                        <view class="btn {{showRatingType===2?'active':''}}" bindtap="changeRatingType" data-i="2">全部<text class="num">{{tools.getRatings(2,ratings).length}}</text></view>
+                        <view class="btn {{showRatingType===0?'active':''}}" bindtap="changeRatingType" data-i="0">好评<text class="num">{{tools.getRatings(0,ratings).length}}</text></view>
+                        <view class="btn badBtn {{showRatingType===1?'active':''}}" bindtap="changeRatingType" data-i="1">差评<text class="num">{{tools.getRatings(1,ratings).length}}</text></view>
+                        <view class="showHasContent" bindtap="changeShowHasContent">
+                            <text class="circle {{showHasContent?'active':''}}"></text>
+                            <text>只看有内容的评价</text>
+                        </view>
+                    </view>
+                    <view class="ratingsBox">
+                        <view class="ratingsItem"
+                            wx:for="{{tools.getRatings(showRatingType,ratings)}}"
+                            wx:for-item="ratingItem"
+                            wx:for-index="i"
+                            wx:key="{{i}}"
+                            wx:if="{{!(!ratingItem.text&&showHasContent)}}">
+                            <view class="left">
+                                <image class="avatar" src="{{ratingItem.avatar}}" lazy-load="true" />
+                            </view>
+                            <view class="right">
+                                <view class="username">{{ratingItem.username}}</view>
+                                <star score="{{ratingItem.score}}"></star>
+                                <view class="text">{{ratingItem.text}}</view>
+                                <view class="likeFoods">
+                                    <text class="likeFood"
+                                    wx:for="{{ratingItem.recommend}}"
+                                    wx:for-item="recItem"
+                                    wx:for-index='j'
+                                    wx:key='{{j}}'>{{recItem}}</text>
+                                </view>
+                            </view>
+                            <view class="time">{{ratingItem.rateTime}}</view>
+                        </view>
+                    </view>
+                </scroll-view>
+                <!-- tab 商家分页 -->
+                <scroll-view class="seller tabConItem"  scroll-y="true">
+                    <view class="bulletin">
+                      <view class="title">商家信息</view>
+                      <view class="content">{{seller.bulletin}}</view>
+                    </view>
+                    <view class="info">
+                      <view class="infoItem">
+                        <text class="typeName">商家名称</text>
+                        <text class="content">{{seller.name}}</text>
+                      </view>
+                      <view class="infoItem">
+                        <text class="typeName">商家起送价</text>
+                        <text class="content">{{seller.minPrice}}元</text>
+                      </view>
+                      <view class="infoItem">
+                        <text class="typeName">商家月售</text>
+                        <text class="content">{{seller.sellCount}}单</text>
+                      </view>
+                      <view class="infoItem">
+                        <text class="typeName">商家配送时间</text>
+                        <text class="content">{{seller.deliveryTime}}分钟</text>
+                      </view>
+                    </view>
+                    <i-button type='ghost' long="true">举报商家</i-button>
+                </scroll-view>
             </view>
         </view>
     </view>
